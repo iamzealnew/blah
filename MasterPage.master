@@ -1,0 +1,78 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+    border-right:1px solid #bbb;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+</style>
+    <asp:ContentPlaceHolder id="head" runat="server">
+
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+
+<ul>
+  <li><a class="active" href="dashboard.aspx">Home</a></li>
+  <li><a href="manage_inventory">Manage inventory</a></li>
+    <li><a href="view_inventory">View Prod</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li style="float:right"><a href="#about">About</a></li>
+    <% if (Session["user"] == null) { %>
+        <li style="float:right" ><a href="login.aspx">Login / Register</a></li>
+    <% } else { %>
+        <li style="float:right" ><a href="logout.aspx">Logout</a></li>
+        <li style="float:right" ><a href="#">Welcome <%: Session["user"] %></a></li>
+      
+    <%} %>
+</ul>
+
+
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+
+        </asp:ContentPlaceHolder>
+
+        <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - Tata Consultancy Services</p>
+            </footer>
+
+    </div>
+    </form>
+</body>
+</html>
